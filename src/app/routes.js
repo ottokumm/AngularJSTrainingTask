@@ -17,7 +17,7 @@
 			})
 			.state('shell.projects', {
 				url: '/projects',
-				templateUrl: 'app/pages/courses/courses.html',
+				templateUrl: 'app/pages/course/course.html',
 				controller: 'projectsCtrl',
 				controllerAs: 'vm',
 				title: 'Projects List'
