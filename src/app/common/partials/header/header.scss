@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+.page-header-partial {
+	border: 1px solid $c-alto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+}
+
+.page-logo {
+	height: 64px;
+	width: auto;
+}

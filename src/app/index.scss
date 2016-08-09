@@ -1,0 +1,33 @@
+@import "common/styles/components";
+@import "common/styles/variables";
+@import "common/styles/mixins";
+body {
+	font-family: $font-default;
+	background-color: $c-concrete;
+}
+
+html,
+body,
+.co-container,
+.page-content,
+.container {
+	height: 100%;
+}
+
+body {
+	padding: 15px;
+}
+
+.page-content {
+	padding: 5px;
+	position: relative
+}
+
+.page-content-default {
+	border: 1px solid $c-alto;
+	box-shadow: 5px 5px 25px 0px rgba(0, 0, 0, 0.55);
+	background-color: #FFFFFF;
+}
+
+// injector
+// endinjector

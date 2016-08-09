@@ -1,0 +1,84 @@
+﻿<div class="new-project-page">
+
+	<div class="page-header">
+		<h1>New Project</h1>
+		<div class="page-header-line"></div>
+	</div>
+
+	<div class="page-body" data-test-body>
+		<fieldset>
+			<form name="projectForm" novalidate>
+
+				<div class="form-group">
+					<label for="projectName">Project Name</label>
+					<span class="validator-label text-danger" ng-messages="projectForm.projectName.$error">
+						<span ng-message="required" data-test-name-required>REQUIRED</span>
+						<span ng-message="maxlength" data-test-name-maxlen>Max Length is {{vm.projectNameMaxLength}} symbols</span>
+					</span>
+					<input id="projectName" name="projectName" type="text" class="form-control"
+						   ng-model="vm.project.name" required
+						   ng-minlength="1" ng-maxlength="vm.projectNameMaxLength"
+						   ng-class="{'error-input': projectForm.projectName.$invalid && projectForm.projectName.$touched}"
+						   data-test-name />
+				</div>
+
+				<div class="form-group">
+					<label for="projectDescription">Project Description</label>
+					<span class="validator-label text-danger" ng-messages="projectForm.projectDescription.$error">
+						<span ng-message="required" data-test-description-required>REQUIRED</span>
+						<span ng-message="maxlength" data-test-description-maxlen>Max Length is {{vm.projectDescriptionMaxLength}} symbols</span>
+					</span>
+					<textarea id="projectDescription" name="projectDescription" class="form-control" rows="7"
+							  ng-model="vm.project.description" required
+							  ng-minlength="1" ng-maxlength="vm.projectDescriptionMaxLength"
+							  ng-class="{'error-input': projectForm.projectDescription.$invalid && projectForm.projectDescription.$touched}"
+							  data-test-description></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="targetIndustries">Target Industries</label>
+					<span class="validator-label text-danger" ng-messages="projectForm.targetIndustries.$error">
+						<span ng-message="required" data-test-industries-required>REQUIRED</span>
+					</span>
+					<div class="target-industries">
+						<input type="text" placeholder="Start typing..." class="form-control"
+							   name="targetIndustries"
+							   ng-model="vm.selectedIndustry"
+							   typeahead="industry.name as industry for industry in vm.searchIndustriesByTerm($viewValue)"
+							   typeahead-template-url="app/pages/newProject/targetIndustryDropDownItem.html"
+							   typeahead-min-length="vm.targetIndustriesTypeaheadMinLength"
+							   typeahead-on-select="vm.onSelectIndustry($item)"
+							   co-validation="vm.project.targetIndustries.length > 0"
+							   co-validation-type="required"
+							   ng-class="{'error-input': projectForm.targetIndustries.$invalid && projectForm.targetIndustries.$touched}"
+							   data-test-industries />
+						
+						<i class="typeahead-clear glyphicon glyphicon-remove-sign"
+						   ng-if="vm.selectedIndustry"
+						   ng-click="vm.clearIndustry()"
+						   data-test-industries-clear></i>
+					</div>
+				</div>
+
+				<div class="selected-industries">
+					<ul>
+						<li class="industry-dropdown-item" ng-repeat="industry in vm.project.targetIndustries">
+							<div class="industry-name" data-test-industry-selected-name>{{industry.name}}</div>
+							<div class="industry-description">{{industry.description}}</div>
+							<i class="industry-delete glyphicon glyphicon-remove-sign"
+							   ng-click="vm.removeIndustry(industry.id)"
+							   data-test-industry-remove></i>
+						</li>
+					</ul>
+				</div>
+				<button class="btn btn-lg btn-submit"
+						ng-disabled="projectForm.$invalid || vm.createProjectInProcess"
+						ng-click="vm.createProject(projectForm)"
+						data-test-create>
+					Create Project
+				</button>
+
+			</form>
+		</fieldset>
+	</div>
+</div>

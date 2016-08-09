@@ -1,0 +1,24 @@
+@import './../../common/styles/variables.scss';
+@import './../../common/styles/colors.scss';
+.information-field {
+    line-height: 34px;
+    @include ellipsis($max-validation-info-width);
+}
+
+.invalid {
+    &.information-field {
+        color: $color-invalid;
+    }
+    &.form-control {
+        @include form-border($color-invalid);
+    }
+}
+
+.valid {
+    &.information-field {
+        color: $color-valid;
+    }
+    &.form-control {
+        @include form-border($color-valid);
+    }
+}

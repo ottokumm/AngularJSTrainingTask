@@ -1,0 +1,17 @@
+﻿////
+/// Mixins
+/// @group Mixins
+////
+@mixin ellipsis ($max-width) {
+  display: inline-block;
+  max-width: $max-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin form-border($color) {
+  border: 1px solid $color;
+  transition: all .2s;
+  box-shadow: 0 0 10px $color;
+}
