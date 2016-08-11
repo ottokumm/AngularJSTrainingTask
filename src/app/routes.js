@@ -11,25 +11,26 @@
 			.state('shell', {
 				url: '',
 				abstract: true,
-				controller: 'shellCtrl',
-				controllerAs: 'vm',
 				templateUrl: 'app/pages/shell.html'
 			})
-			.state('shell.projects', {
-				url: '/projects',
+			.state('shell.courses', {
+				url: '/courses',
 				templateUrl: 'app/pages/courses/courses.html',
-				controller: 'projectsCtrl',
+				controller: 'coursesCtrl',
 				controllerAs: 'vm',
-				title: 'Projects List'
+				title: 'Courses List'
 			})
-			.state('shell.newProject', {
-				url: '/newProject',
-				templateUrl: 'app/pages/newProject/newProject.html',
-				controller: 'newProjectCtrl',
-				controllerAs: 'vm',
-				title: 'New Project'
+			.state('shell.course', {
+				url: '/course',
+				templateUrl: 'app/pages/course/course.html',
+				title: 'Course'
+			})
+			.state('shell.login', {
+				url: '/login',
+				templateUrl: 'app/pages/login/login.html',
+				title: 'Login'
 			});
 
-		$urlRouterProvider.otherwise('/projects');
+		$urlRouterProvider.otherwise('/login');
 	}
 }());

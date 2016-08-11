@@ -15,25 +15,24 @@
                 <button type="button" class="btn btn-default btn-block">Add New Course</button>
             </div>
         </div>
-        <div class="row">
+        <div ng-repeat="course in vm.courses" class="row">
             <div class="col-xs-12 panel panel-default">
                 <div class="row panel-body">
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h4>Videocourse</h4>
+                                <h4>{{course.title}}</h4>
                             </div>
                             <div class="col-xs-4">
-                                <h4>Some time</h4>
+                                <h4>{{course.duration}}</h4>
                             </div>
                             <div class="col-xs-4">
-                                <h4>Some date</h4>
+                                <h4>{{course.datetime}}</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                    lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                                <p>{{course.description}}</p>
                             </div>
                         </div>
                     </div>
