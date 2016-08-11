@@ -3,6 +3,9 @@
 	angular
 		.module('app', [
 			'ui.router',
-			'app.common'
+			'ngResource',
+			'ngMockE2E',
+			'app.common',
+			'app.backend'
 		]);
 }());
