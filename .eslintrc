@@ -32,20 +32,26 @@
 		"protractor": false
 	},
 	"rules": {
-		"quotes": [ 2, "single", "avoid-escape" ],
-		"no-use-before-define": [ 2, "nofunc" ],
-		"no-unused-vars": [ 2, { "vars": "all", "args": "none" } ],
-		"angular/ng_controller_name": [ 2, "/.*Ctrl$/" ],
+		"quotes": [2, "single", "avoid-escape"],
+		"no-use-before-define": [2, "nofunc"],
+		"no-unused-vars": [2, {
+			"vars": "all",
+			"args": "none"
+		}],
+		"angular/ng_controller_name": [2, "/.*Ctrl$/"],
 		"angular/ng_no_digest": 0,
 		"no-else-return": 2,
 		"no-extra-parens": 2,
 		"no-unexpected-multiline": 2,
 		"default-case": 2,
-		"dot-location": [ 2, "property" ],
+		"dot-location": [2, "property"],
 		"no-throw-literal": 2,
 		"radix": 2,
-		"wrap-iife": [ 2, "outside" ],
-		"brace-style": [ 2, "stroustrup", { "allowSingleLine": true } ],
-		"comma-style": [2, "last"]
+		"wrap-iife": [2, "outside"],
+		"brace-style": [2, "1tbs", {
+			"allowSingleLine": true
+		}],
+		"comma-style": [2, "last"],
+		"eol-last": 0
 	}
 }

@@ -18,19 +18,42 @@
 				templateUrl: 'app/pages/courses/courses.html',
 				controller: 'coursesCtrl',
 				controllerAs: 'vm',
-				title: 'Courses List'
+				title: 'Courses List',
+				data: {
+					authNeeded: true
+				}
 			})
 			.state('shell.course', {
-				url: '/course',
+				url: '/courses/:id',
 				templateUrl: 'app/pages/course/course.html',
-				title: 'Course'
+				controller: 'courseCtrl',
+				controllerAs: 'vm',
+				title: 'Course',
+				data: {
+					authNeeded: true
+				}
+			})
+			.state('shell.courseNew', {
+				url: '/courses/new',
+				templateUrl: 'app/pages/course/course.html',
+				controller: 'courseNewCtrl',
+				controllerAs: 'vm',
+				title: 'New Course',
+				data: {
+					authNeeded: true
+				}
 			})
 			.state('shell.login', {
 				url: '/login',
+				controller: 'loginCtrl',
+				controllerAs: 'vm',
 				templateUrl: 'app/pages/login/login.html',
-				title: 'Login'
+				title: 'Login',
+				data: {
+					authNeeded: false
+				}
 			});
 
-		$urlRouterProvider.otherwise('/login');
+		$urlRouterProvider.otherwise('/courses');
 	}
 }());

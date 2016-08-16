@@ -1,48 +1,48 @@
 <div class="col-xs-12">
     <div class="container-fluid">
         <div class="row">
-            <form action="#" method="post" class="form-horizontal col-xs-12">
+            <form novalidate method="post" class="form-horizontal col-xs-12" name="form" ng-submit="vm.save()">
                 <div class="form-group">
                     <label for="title" class="control-label col-xs-2">Title</label>
                     <div class="col-xs-4">
-                        <input type="text" name="title" id="titleIdInput" class="form-control invalid" placeholder="Title">
+                        <input type="text" name="title" id="titleIdInput" class="form-control validate" placeholder="Title" ng-model="vm.course.title" required>
                     </div>
-                    <div class="col-xs-2">
-                        <span class="information-field invalid">*Required</span>
+                    <div class="col-xs-2" ng-show="form.title.$touched">
+                        <span ng-show="form.title.$error.required" class="information-field" ng-class="{invalid:form.title.$error.required}">*Required</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description" class="control-label col-xs-2">Description</label>
+                    <label for="description " class="control-label col-xs-2">Description</label>
                     <div class="col-xs-8">
-                        <textarea name="description" id="descriptionIdInput" class="description-area form-control invalid" rows="3" placeholder="Description" maxlength="200"></textarea>
+                        <textarea name="description " id="descriptionIdInput" class="description-area form-control validate" rows="3 " placeholder="Description" ng-model="vm.course.description" required></textarea>
                     </div>
-                    <div class="col-xs-2">
-                        <span class="information-field invalid">*Required</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="description" class="control-label col-xs-2">Datetime</label>
-                    <div class="col-xs-3">
-                        <input type="date" name="datetime" id="datetimeIdInput" class="form-control invalid" placeholder="dd/mm/yyyy">
-                    </div>
-                    <div class="col-xs-2">
-                        <span class="information-field invalid">*Required</span>
+                    <div class="col-xs-2" ng-show="form.description.$touched">
+                        <span ng-show="form.description.$error.required" class="information-field" ng-class="{invalid:form.description.$error.required}">*Required</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description" class="control-label col-xs-2">Duration</label>
-                    <div class="col-xs-2">
-                        <input type="number" name="duration" id="durationIdInput" class="form-control invalid" placeholder="Time Duration">
+                    <label for="description" class="control-label col-xs-2 ">Datetime</label>
+                    <div class="col-xs-3 ">
+                        <input type="text " name="datetime" id="datetimeIdInput" class="form-control validate" placeholder="dd/mm/yyyy" ng-model="vm.course.datetime" required>
+                    </div>
+                    <div class="col-xs-2" ng-show="form.datetime.$touched">
+                        <span ng-show="form.datetime.$error.required" class="information-field" ng-class="{invalid:form.datetime.$error.required}">*Required</span>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="description" class="control-label col-xs-2 ">Duration</label>
+                    <div class="col-xs-2 ">
+                        <input type="number" name="duration " id="durationIdInput" class="form-control validate" placeholder="Time Duration" ng-model="vm.course.duration" required>
                     </div>
                     <div class="col-xs-2">
                         <span class="information-field">Some time</span>
                     </div>
-                    <div class="col-xs-2">
-                        <span class="information-field invalid">*Required</span>
+                    <div class="col-xs-2" ng-show="form.duration.$touched">
+                        <span ng-show="form.duration.$error.required" class="information-field" ng-class="{invalid:form.duration.$error.required}">*Required</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="authors" class="control-label col-xs-2">Authors list</label>
+                    <label for="authors" class="control-label col-xs-2 ">Authors list</label>
                     <div class="col-xs-2">
                         <select name="authors" id="authorsIdInput" class="form-control" size="4" multiple>
                             <option value="Somebody 1">Somebody 1</option>
@@ -73,10 +73,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-2">
-                        <button class="btn btn-default btn-block">Save</button>
+                        <button type="submit" class="btn btn-default btn-block">Save</button>
                     </div>
                     <div class="col-xs-2">
-                        <button class="btn btn-default btn-block">Decline</button>
+                        <button ui-sref="shell.courses" class="btn btn-default btn-block">Decline</button>
                     </div>
                 </div>
             </form>
