@@ -16,9 +16,7 @@
                 result;
 
             if (credentials.username === user.username && credentials.password === user.password) {
-                result = [200, {
-                    token: 'fake-token'
-                }];
+                result = [200];
             } else {
                 result = [401, undefined];
             }

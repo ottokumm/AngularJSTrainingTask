@@ -5,7 +5,7 @@
         .module('app.common')
         .factory('authService', authService);
 
-    function authService($http, $localStorage, $state) {
+    function authService($rootScope, $http, $localStorage, $state) {
 
         return {
             login: login,
@@ -21,24 +21,32 @@
                 })
                 .success(function(response) {
                     $localStorage.currentUser = {
-                        'user': username,
-                        'token': response.token
+                        'user': username
                     };
-                    $http.defaults.headers.common.Authorization = response.token;
+
+                    $rootScope.$emit('isAuthenticated');
                 });
         }
 
         function logout() {
             delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
+
+            $rootScope.$emit('isNotAuthenticated');
+
             $state.go('shell.login');
         }
 
         function getUserName() {
-            return $localStorage.currentUser ? $localStorage.currentUser.user : '';
+            return $localStorage.currentUser ? $localStorage.currentUser.user : null;
         }
 
         function isAuth() {
+            if ($localStorage.currentUser) {
+                $rootScope.$emit('isAuthenticated');
+            } else {
+                $rootScope.$emit('isNotAuthenticated');
+            }
+
             return $localStorage.currentUser;
         }
     }

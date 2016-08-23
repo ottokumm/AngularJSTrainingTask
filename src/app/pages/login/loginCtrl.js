@@ -5,7 +5,7 @@
         .module('app')
         .controller('loginCtrl', loginCtrl);
 
-    function loginCtrl($state, authService) {
+    function loginCtrl($rootScope, $state, authService) {
         var vm = this;
 
         vm.credentials = {

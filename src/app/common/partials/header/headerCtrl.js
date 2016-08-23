@@ -9,23 +9,18 @@
         var vm = this;
 
         vm.logout = authService.logout;
-        vm.displayDashboard = displayDashboard($state);
-        vm.userName = authService.getUserName();
 
-
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { //eslint-disable-line           
-            if (toState.data.authNeeded && !authService.isAuth()) {
-                $state.go('shell.login');
-                toState = $state.current;
-                event.preventDefault();
-            }
-
-            vm.displayDashboard = displayDashboard(toState);
-            vm.userName = authService.getUserName();
+        $rootScope.$on('isAuthenticated', function() { //eslint-disable-line
+            displayDashboard(authService.getUserName(), true);
         });
 
-        function displayDashboard(toState) {
-            return toState.name !== 'shell.login';
+        $rootScope.$on('isNotAuthenticated', function() { //eslint-disable-line
+            displayDashboard(null, false);
+        });
+
+        function displayDashboard(userName, display) {
+            vm.userName = userName;
+            vm.displayDashboard = display;
         }
     }
 }());
