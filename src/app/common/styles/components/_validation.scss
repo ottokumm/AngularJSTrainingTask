@@ -1,5 +1,6 @@
-    @import './../../common/styles/variables.scss';
-    @import './../../common/styles/colors.scss';
+    @import './../variables.scss';
+    @import './../colors.scss';
+    @import './../mixins.scss';
     .information-field {
         line-height: 34px;
         @include ellipsis($max-validation-info-width);

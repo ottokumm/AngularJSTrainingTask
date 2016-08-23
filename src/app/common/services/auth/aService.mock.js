@@ -8,9 +8,7 @@
     function run($httpBackend) {
         var user = {
             username: 'user',
-            password: 'root',
-            firstName: 'user',
-            lastName: 'test'
+            password: 'root'
         };
 
         $httpBackend.whenPOST('/login').respond(function(method, url, data) {
@@ -22,7 +20,7 @@
                     token: 'fake-token'
                 }];
             } else {
-                result = [404, undefined];
+                result = [401, undefined];
             }
 
             return result;

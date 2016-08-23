@@ -5,49 +5,57 @@
         .factory('coursesService', coursesService);
 
     function coursesService($http, $resource) {
-        var Resource = $resource('/courses/:id', {
-            id: '@id'
-        }, {
-            'update': {
-                method: 'PUT'
-            },
-            'remove': {
-                method: 'DELETE'
-            }
-        });
+        var CourseResource = $resource('/courses/:id', {
+                id: '@id'
+            }, {
+                'update': {
+                    method: 'PUT'
+                },
+                'remove': {
+                    method: 'DELETE'
+                }
+            }),
+            AuthorResourse = $resource('/courses/:id', {
+                id: 'new'
+            });
 
         return {
             getCourses: getCourses,
             getCourseById: getCourseById,
             updateCourse: updateCourse,
             addNewCourse: addNewCourse,
-            deleteCourse: deleteCourse
+            deleteCourse: deleteCourse,
+            getAuthors: getAuthors
         };
 
         function getCourses() {
-            return Resource.query();
+            return CourseResource.query();
+        }
+
+        function getAuthors() {
+            return AuthorResourse.query();
         }
 
         function getCourseById(id) {
-            return Resource.get({
+            return CourseResource.get({
                 id: id
             }).$promise;
         }
 
         function updateCourse(course) {
-            Resource.update({
+            CourseResource.update({
                 course: course
             });
         }
 
         function addNewCourse(course) {
-            Resource.save({
+            CourseResource.save({
                 course: course
             });
         }
 
         function deleteCourse(id) {
-            return Resource.remove({
+            return CourseResource.remove({
                 id: id
             });
         }

@@ -5,7 +5,9 @@
         .module('app')
         .controller('courseNewCtrl', courseNewCtrl);
 
-    function courseNewCtrl($state, coursesService) {
+    courseNewCtrl.$inject = ['$scope', '$state', 'coursesService', 'modalValidationService', 'errorLog'];
+
+    function courseNewCtrl($scope, $state, coursesService, modalValidationService, errorLog) {
         var vm = this;
 
         vm.course = {
@@ -13,12 +15,22 @@
             'title': '',
             'duration': 0,
             'description': '',
-            'datetime': ''
+            'datetime': '',
+            'authors': [],
+            'avAuthors': [{
+                'id': 0
+            }]
         };
 
+        vm.course.avAuthors = coursesService.getAuthors();
+
         vm.save = function() {
-            coursesService.addNewCourse(vm.course);
-            $state.go('shell.courses');
+            if ($scope.form.$valid) {
+                coursesService.addNewCourse(vm.course);
+                $state.go('shell.courses');
+            } else {
+                modalValidationService.getModalInstance(errorLog.getErrors($scope.form.$error, ['btfDatetime', 'required']));
+            }
         };
     }
 }());

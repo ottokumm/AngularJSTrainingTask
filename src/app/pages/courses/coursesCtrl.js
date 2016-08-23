@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .controller('coursesCtrl', coursesCtrl);
+        .controller('coursesCtrl', coursesCtrl, ['$rootScope']);
 
-    function coursesCtrl($log, $modal, coursesService) {
+    function coursesCtrl($modal, coursesService, modalDeleteService, $rootScope) {
         var vm = this,
             fValue = '';
 
@@ -13,11 +13,14 @@
 
         vm.courses = coursesService.getCourses();
 
+        $rootScope.$on('$stateChangeSuccess', function() { //eslint-disable-line   
+            vm.courses = coursesService.getCourses();
+        });
+
         vm.filter = {
             setValue: setValue,
             getValue: getValue
         };
-
 
         function setValue(val) {
             fValue = val;
@@ -28,16 +31,7 @@
         }
 
         vm.deleteCourse = function(course) {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/common/partials/modals/deleteConfirm.html',
-                controller: 'deleteConfirmCtrl',
-                controllerAs: 'vm',
-                resolve: {
-                    course: function() {
-                        return course;
-                    }
-                }
-            });
+            var modalInstance = modalDeleteService.getModalInstance(course);
 
             modalInstance.result.then(function(result) {
                 coursesService.deleteCourse(result);

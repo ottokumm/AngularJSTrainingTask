@@ -20,27 +20,35 @@
 				controllerAs: 'vm',
 				title: 'Courses List',
 				data: {
-					authNeeded: true
+					authNeeded: true,
+					displayName: 'Courses'
 				}
 			})
-			.state('shell.course', {
-				url: '/courses/:id',
+			.state('shell.courses.course', {
+				url: '/{id:int}',
 				templateUrl: 'app/pages/course/course.html',
 				controller: 'courseCtrl',
 				controllerAs: 'vm',
 				title: 'Course',
+				resolve: {
+					course: function(coursesService, $stateParams) {
+						return coursesService.getCourseById($stateParams.id);
+					}
+				},
 				data: {
-					authNeeded: true
+					authNeeded: true,
+					displayName: '{{ course.title }}'
 				}
 			})
-			.state('shell.courseNew', {
-				url: '/courses/new',
+			.state('shell.courses.courseNew', {
+				url: '/new',
 				templateUrl: 'app/pages/course/course.html',
 				controller: 'courseNewCtrl',
 				controllerAs: 'vm',
 				title: 'New Course',
 				data: {
-					authNeeded: true
+					authNeeded: true,
+					displayName: '{{ course.title }}'
 				}
 			})
 			.state('shell.login', {
@@ -50,7 +58,8 @@
 				templateUrl: 'app/pages/login/login.html',
 				title: 'Login',
 				data: {
-					authNeeded: false
+					authNeeded: false,
+					displayName: 'Login'
 				}
 			});
 

@@ -1,4 +1,4 @@
-<div class="col-xs-12">
+<div ui-view class="col-xs-12">
     <div class="container-fluid">
         <div class="row panel-search">
             <div class="form-group col-xs-6">
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-xs-offset-3 col-xs-3">
-                <button ui-sref="shell.courseNew" type="button" class="btn btn-default btn-block">Add New Course</button>
+                <button ui-sref="shell.courses.courseNew" type="button" class="btn btn-default btn-block">Add New Course</button>
             </div>
         </div>
         <div ng-repeat="course in vm.courses | courseTitleFilter : vm.filter.getValue()" class="row">
@@ -24,7 +24,7 @@
                                 <h4>{{course.title}}</h4>
                             </div>
                             <div class="col-xs-4">
-                                <h4>{{course.duration}}</h4>
+                                <h4>{{course.duration | courseDurationFilter}}</h4>
                             </div>
                             <div class="col-xs-4">
                                 <h4>{{course.datetime}}</h4>
@@ -33,13 +33,14 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>{{course.description}}</p>
+                                <btf-values-enumeration values="course.authors"></btf-values-enumeration>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="row">
                             <div class="col-xs-12 form-group">
-                                <button ui-sref="shell.course({id : course.id})" class="btn btn-default btn-block">Edit</button>
+                                <button ui-sref="shell.courses.course({id : course.id})" class="btn btn-default btn-block">Edit</button>
                             </div>
                         </div>
                         <div class="row">

@@ -13,7 +13,7 @@
         vm.userName = authService.getUserName();
 
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) { //eslint-disable-line           
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { //eslint-disable-line           
             if (toState.data.authNeeded && !authService.isAuth()) {
                 $state.go('shell.login');
                 toState = $state.current;

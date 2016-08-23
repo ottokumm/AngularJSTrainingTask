@@ -1,12 +1,15 @@
 <div class="col-xs-12" ng-controller="headerCtrl as vm">
     <div class="container-fluid">
         <div class="page-header-partial row">
-            <div class="col-xs-4">
+            <div class="col-xs-1">
                 <a href="#" ui-sref="shell.courses">
                     <img class="media-object page-logo" src=".././../../../../images/Logo.png" alt="logo">
                 </a>
             </div>
-            <div class="col-xs-offset-6 col-xs-2">
+            <div class="col-xs-9">
+                <btf-breadcrumbs></btf-breadcrumbs>
+            </div>
+            <div class="col-xs-2">
                 <div ng-show="vm.displayDashboard" class="row">
                     <div class="col-xs-12">
                         {{vm.userName}} {{vm.displayDashBoard()}}

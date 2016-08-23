@@ -20,7 +20,6 @@
         };
 
         vm.login = function(credentials) {
-            vm.loading = true;
             vm.errorMessage = '';
 
             authService.login(vm.credentials.login, vm.credentials.password).then(
@@ -29,7 +28,6 @@
                 },
                 function(error) {
                     vm.errorMessage = 'Username or password is incorrect';
-                    vm.loading = false;
                     vm.error = true;
                     vm.credentials.password = '';
                 }
