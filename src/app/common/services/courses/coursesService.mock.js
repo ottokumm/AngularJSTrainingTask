@@ -70,12 +70,13 @@
                 var mockId = url.match(/\/courses\/(\d+)/)[1],
                     course = getItemById(mockId);
 
-                course.authors = getCourseAuthors(course.authors);
-                course.avAuthors = getAvailableAuthors(course.authors);
-
                 if (angular.isUndefined(course)) {
                     return [404, undefined];
                 }
+
+                course.authors = getCourseAuthors(course.authors);
+                course.avAuthors = getAvailableAuthors(course.authors);
+
                 return [200, course];
             }
         );

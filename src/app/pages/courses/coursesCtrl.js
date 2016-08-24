@@ -3,9 +3,11 @@
 
     angular
         .module('app')
-        .controller('coursesCtrl', coursesCtrl, ['$rootScope']);
+        .controller('coursesCtrl', coursesCtrl);
 
-    function coursesCtrl($modal, coursesService, modalDeleteService, $rootScope) {
+    coursesCtrl.$inject = ['$modal', '$rootScope', 'coursesService', 'modalDeleteService'];
+
+    function coursesCtrl($modal, $rootScope, coursesService, modalDeleteService) {
         var vm = this,
             fValue = '';
 
@@ -13,7 +15,7 @@
 
         vm.courses = coursesService.getCourses();
 
-        $rootScope.$on('$stateChangeSuccess', function() { //eslint-disable-line   
+        $rootScope.$on('$stateChangeSuccess', function() { //eslint-disable-line
             vm.courses = coursesService.getCourses();
         });
 
@@ -21,6 +23,8 @@
             setValue: setValue,
             getValue: getValue
         };
+
+        vm.deleteCourse = deleteCourse;
 
         function setValue(val) {
             fValue = val;
@@ -30,13 +34,13 @@
             return fValue;
         }
 
-        vm.deleteCourse = function(course) {
+        function deleteCourse(course) {
             var modalInstance = modalDeleteService.getModalInstance(course);
 
             modalInstance.result.then(function(result) {
                 coursesService.deleteCourse(result);
                 vm.courses = coursesService.getCourses();
             });
-        };
+        }
     }
 }());

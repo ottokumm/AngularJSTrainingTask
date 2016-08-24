@@ -1,17 +1,9 @@
 @import "common/styles/components";
-@import "common/styles/variables";
-@import "common/styles/mixins";
+@import "common/styles/_variables";
+@import "common/styles/_mixins";
 body {
 	font-family: $font-default;
 	background-color: $c-concrete;
-}
-
-html,
-body,
-.co-container,
-.page-content,
-.container {
-	/*height: 100%;*/
 }
 
 body {

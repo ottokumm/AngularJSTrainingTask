@@ -5,7 +5,7 @@
         .module('app.common')
         .controller('headerCtrl', headerCtrl);
 
-    function headerCtrl($rootScope, $state, authService) {
+    function headerCtrl($rootScope, authService) {
         var vm = this;
 
         vm.logout = authService.logout;

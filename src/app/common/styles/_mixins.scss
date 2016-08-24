@@ -1,8 +1,4 @@
-﻿////
-/// Mixins
-/// @group Mixins
-////
-@mixin ellipsis ($max-width) {
+﻿@mixin ellipsis ($max-width) {
   display: inline-block;
   max-width: $max-width;
   overflow: hidden;

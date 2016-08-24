@@ -24,13 +24,15 @@
 
         vm.course.avAuthors = coursesService.getAuthors();
 
-        vm.save = function() {
+        vm.save = save;
+
+        function save() {
             if ($scope.form.$valid) {
                 coursesService.addNewCourse(vm.course);
                 $state.go('shell.courses');
             } else {
                 modalValidationService.getModalInstance(errorLog.getErrors($scope.form.$error, ['btfDatetime', 'required']));
             }
-        };
+        }
     }
 }());

@@ -15,13 +15,15 @@
 		.run(run);
 
 	function run($rootScope, $state, authService) {
-		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { //eslint-disable-line        
+		$rootScope.$on('$stateChangeSuccess', function(event, toState) { //eslint-disable-line        
 			var authResult = authService.isAuth();
 
 			if (toState.data.authNeeded && !authResult) {
+				event.preventDefault();
 				$state.go('shell.login');
 			}
 			if (toState.name === 'shell.login' && authResult) {
+				event.preventDefault();
 				$state.go('shell.courses');
 			}
 		});

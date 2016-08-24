@@ -5,6 +5,8 @@
         .module('app')
         .controller('loginCtrl', loginCtrl);
 
+    loginCtrl.$inject = ['$rootScope', '$state', 'authService'];
+
     function loginCtrl($rootScope, $state, authService) {
         var vm = this;
 
@@ -19,7 +21,9 @@
             return vm.credentials.login === '' || vm.credentials.password === '';
         };
 
-        vm.login = function(credentials) {
+        vm.login = login;
+
+        function login(credentials) {
             vm.errorMessage = '';
 
             authService.login(vm.credentials.login, vm.credentials.password).then(
@@ -32,6 +36,6 @@
                     vm.credentials.password = '';
                 }
             );
-        };
+        }
     }
 }());
