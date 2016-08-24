@@ -48,7 +48,7 @@
 				title: 'New Course',
 				data: {
 					authNeeded: true,
-					displayName: '{{ course.title }}'
+					displayName: 'New'
 				}
 			})
 			.state('shell.login', {

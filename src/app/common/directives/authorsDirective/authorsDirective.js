@@ -19,24 +19,27 @@
 
                 addButton.bind('click', function(e) {
                     if (angular.isDefined(scope.selectedAvailableAuthors)) {
-                        scope.courseAuthors = transfer(scope.selectedAvailableAuthors, scope.courseAuthors);
+                        scope.$apply(function() {
 
-                        scope.availableAuthors = _.differenceBy(scope.availableAuthors, scope.courseAuthors, 'id');
+                            scope.courseAuthors = transfer(scope.selectedAvailableAuthors, scope.courseAuthors);
 
-                        scope.selectedAvailableAuthors = undefined;
+                            scope.availableAuthors = _.differenceBy(scope.availableAuthors, scope.courseAuthors, 'id');
 
-                        scope.$apply();
+                            scope.selectedAvailableAuthors = undefined;
+                        });
                     }
                 });
+
                 removeButton.bind('click', function(e) {
                     if (angular.isDefined(scope.selectedCourseAuthors)) {
-                        scope.availableAuthors = transfer(scope.selectedCourseAuthors, scope.availableAuthors);
+                        scope.$apply(function() {
 
-                        scope.courseAuthors = _.differenceBy(scope.courseAuthors, scope.availableAuthors, 'id');
+                            scope.availableAuthors = transfer(scope.selectedCourseAuthors, scope.availableAuthors);
 
-                        scope.selectedCourseAuthors = undefined;
+                            scope.courseAuthors = _.differenceBy(scope.courseAuthors, scope.availableAuthors, 'id');
 
-                        scope.$apply();
+                            scope.selectedCourseAuthors = undefined;
+                        });
                     }
                 });
 
